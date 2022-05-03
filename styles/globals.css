@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply font-poppins;
+  }
+}
+
+/* @font-face {
+  src: url(/fonts/Poppins-Regular.ttf);
+  font-weight: 400;
+  font-family: "poppins";
+}
+
+@font-face {
+  src: url(/fonts/Poppins-SemiBold.tff);
+  font-weight: 600;
+  font-family: "poppins";
+} */
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #212429;
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
