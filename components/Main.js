@@ -4,6 +4,7 @@ import Card from "./UI/Card";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import useCoins from "../hooks/useCoins";
 import Graph from "./UI/Graph";
+import Info from "./UI/Info";
 
 const Main = () => {
   const btcData = useCoins("bitcoin");
@@ -104,9 +105,15 @@ const Main = () => {
             symbol={usdcData && usdcData.symbol}
             onClick={() => setSelected(usdcData)}
           />
+          <div className="bg-primary/20 rounded-xl w-full h-full cursor-pointer flex justify-center items-center hover:bg-primary/10">
+            Support
+          </div>
         </div>
-        <div className="w-full col-span-3 h-full rounded-lg flex flex-row items-between space-x-4">
+        <div className="w-full col-span-2 h-full rounded-lg flex flex-row items-between space-x-4">
           <Graph data={selected} />
+        </div>
+        <div className="w-full col-span-1 h-full">
+          <Info data={selected} />
         </div>
       </div>
     </Layout>

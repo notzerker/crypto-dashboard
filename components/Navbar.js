@@ -1,4 +1,5 @@
 import React from "react";
+import { BsThreeDots } from "react-icons/bs";
 
 const Navbar = () => {
   return (
@@ -33,7 +34,7 @@ const Navbar = () => {
           strokeWidth={1}
         />
       </svg>
-      {/* <div className="rounded-full w-12 h-12 bg-white" /> */}
+      <BsThreeDots className="cursor-pointer" />
     </div>
   );
 };
