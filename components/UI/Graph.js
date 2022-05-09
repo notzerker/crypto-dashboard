@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
+import LineGraph from "./LineGraph";
 
-const Graph = ({ data }) => {
+const Graph = ({ data, marketData }) => {
   const [drop, setDrop] = useState(false);
   const [percentage, setPercentage] = useState();
+  const [chartData, setChartData] = useState();
+
+  useEffect(() => {
+    regenerateData();
+  }, []);
 
   useEffect(() => {
     if (data) {
@@ -24,6 +30,18 @@ const Graph = ({ data }) => {
       }
     }
   }, [data]);
+
+  const regenerateData = () => {
+    const chartData = [];
+    for (let i = 0; i < 20; i++) {
+      const value = Math.floor(Math.random() * i + 3);
+      chartData.push({
+        label: i,
+        value,
+      });
+    }
+    setChartData(chartData);
+  };
 
   return (
     data && (
@@ -48,7 +66,9 @@ const Graph = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="bg-dark rounded-xl w-full h-full"></div>
+        <div className="bg-dark rounded-xl w-full h-full overflow-hidden">
+          <LineGraph market={marketData} drop={drop} />
+        </div>
       </div>
     )
   );

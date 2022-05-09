@@ -3,6 +3,7 @@ import Layout from "./Layouts/Layout";
 import Card from "./UI/Card";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import useCoins from "../hooks/useCoins";
+import useMarket from "../hooks/useMarket";
 import Graph from "./UI/Graph";
 import Info from "./UI/Info";
 
@@ -12,15 +13,39 @@ const Main = () => {
   const bnbData = useCoins("binancecoin");
   const usdcData = useCoins("usd-coin");
 
+  const btcMarket = useMarket("bitcoin", "usd", "7", "daily");
+  const ethMarket = useMarket("ethereum", "usd", "7", "daily");
+  const bnbMarket = useMarket("binancecoin", "usd", "7", "daily");
+  const usdcMarket = useMarket("usd-coin", "usd", "7", "daily");
+
   const [selected, setSelected] = useState();
+  const [selectedMarket, setSelectedMarket] = useState();
+
+  const selectionHanlder = (id) => {
+    if (id === "btc") {
+      setSelected(btcData);
+      setSelectedMarket(btcMarket);
+    } else if (id === "eth") {
+      setSelected(ethData);
+      setSelectedMarket(ethMarket);
+    } else if (id === "bnb") {
+      setSelected(bnbData);
+      setSelectedMarket(bnbMarket);
+    } else {
+      setSelected(usdcData);
+      setSelectedMarket(usdcMarket);
+    }
+  };
 
   useEffect(() => {
-    btcData && setSelected(btcData);
+    btcData && selectionHanlder("btc");
   }, [btcData]);
+
+  console.log(btcMarket);
 
   return (
     <Layout>
-      <div className="w-full grid grid-cols-4 gap-12 h-full py-12">
+      <div className="w-full grid grid-cols-4 gap-4 h-full py-12">
         <div className="w-full h-full flex flex-col justifty-start space-y-4 rounded-lg">
           <Card
             icon={
@@ -39,7 +64,8 @@ const Main = () => {
               btcData && btcData.market_data.price_change_percentage_24h
             }
             symbol={btcData && btcData.symbol}
-            onClick={() => setSelected(btcData)}
+            onClick={() => selectionHanlder("btc")}
+            selected={selected}
           />
           <Card
             icon={
@@ -66,7 +92,8 @@ const Main = () => {
               ethData && ethData.market_data.price_change_percentage_24h
             }
             symbol={ethData && ethData.symbol}
-            onClick={() => setSelected(ethData)}
+            onClick={() => selectionHanlder("eth")}
+            selected={selected}
           />
           <Card
             icon={
@@ -84,7 +111,7 @@ const Main = () => {
               bnbData && bnbData.market_data.price_change_percentage_24h
             }
             symbol={bnbData && bnbData.symbol}
-            onClick={() => setSelected(bnbData)}
+            onClick={() => selectionHanlder("bnb")}
           />
           <Card
             icon={
@@ -103,14 +130,15 @@ const Main = () => {
               usdcData && usdcData.market_data.price_change_percentage_24h
             }
             symbol={usdcData && usdcData.symbol}
-            onClick={() => setSelected(usdcData)}
+            onClick={() => selectionHanlder("usdc")}
+            selected={selected}
           />
-          <div className="bg-primary/20 rounded-xl w-full h-full cursor-pointer flex justify-center items-center hover:bg-primary/10">
+          <div className="bg-primary/50 transition duration-200 ease-linear rounded-xl w-full h-full cursor-pointer flex justify-center items-center hover:bg-primary/20">
             Support
           </div>
         </div>
         <div className="w-full col-span-2 h-full rounded-lg flex flex-row items-between space-x-4">
-          <Graph data={selected} />
+          <Graph data={selected} marketData={selectedMarket} />
         </div>
         <div className="w-full col-span-1 h-full">
           <Info data={selected} />

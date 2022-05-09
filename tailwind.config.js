@@ -12,9 +12,11 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
       colors: {
-        dark: "#171717",
-        light: "#282828",
+        dark: "#191b1f",
+        light: "#272B31",
         primary: "#0DE782",
+        secondary: "#E70D73",
+        gray: "#b9c1c3",
       },
     },
   },
