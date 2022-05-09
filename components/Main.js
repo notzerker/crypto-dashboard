@@ -133,7 +133,7 @@ const Main = () => {
             onClick={() => selectionHanlder("usdc")}
             selected={selected}
           />
-          <div className="bg-primary/50 transition duration-200 ease-linear rounded-xl w-full h-full cursor-pointer flex justify-center items-center hover:bg-primary/20">
+          <div className="bg-light transition duration-200 ease-linear rounded-xl w-full h-[4rem] cursor-pointer flex justify-center items-center hover:bg-light/50">
             Support
           </div>
         </div>
