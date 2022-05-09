@@ -53,7 +53,7 @@ Chart.register(
   Tooltip
 );
 
-const LineGraph = ({ market, drop }) => {
+const LineGraph = ({ market, drop, selected }) => {
   const [data, setData] = useState([]);
   const [label, setLabel] = useState([]);
   const [color, setColor] = useState("");
@@ -62,14 +62,29 @@ const LineGraph = ({ market, drop }) => {
     if (market) {
       const priceArray = [];
       const labelArray = [];
-      market.prices.forEach((price) => {
-        priceArray.push(price[1]);
-        labelArray.push("");
-      });
+      if (selected === "market") {
+        market.market_caps &&
+          market.market_caps.forEach((price) => {
+            priceArray.push(price[1]);
+            labelArray.push("");
+          });
+      } else if (selected === "prices") {
+        market.prices &&
+          market.prices.forEach((price) => {
+            priceArray.push(price[1]);
+            labelArray.push("");
+          });
+      } else {
+        market.total_volumes.forEach((price) => {
+          market.total_volumes && priceArray.push(price[1]);
+          labelArray.push("");
+        });
+      }
+
       setData(priceArray);
       setLabel(labelArray);
     }
-  }, [market]);
+  }, [market, selected]);
 
   useEffect(() => {
     if (drop) {
@@ -86,7 +101,12 @@ const LineGraph = ({ market, drop }) => {
           labels: label,
           datasets: [
             {
-              label: "USD price",
+              label:
+                selected === "market"
+                  ? "Market Cap"
+                  : selected === "prices"
+                  ? "USD Price"
+                  : selected === "volume" && "Total Volume",
               data: data,
               backgroundColor: [color],
               borderColor: [color],
@@ -95,6 +115,8 @@ const LineGraph = ({ market, drop }) => {
                 target: "origin",
                 above: color.toString() + "20", // Area will be red above the origin
               },
+              pointRadius: 3,
+              pointHoverRadius: 3,
             },
           ],
         }}

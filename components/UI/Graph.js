@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import LineGraph from "./LineGraph";
 
-const Graph = ({ data, marketData }) => {
+const Graph = ({ data, selectedMarket }) => {
   const [drop, setDrop] = useState(false);
   const [percentage, setPercentage] = useState();
   const [chartData, setChartData] = useState();
-
-  useEffect(() => {
-    regenerateData();
-  }, []);
+  const [market, setMarket] = useState("prices");
+  const [interval, setInterval] = useState("7");
+  const [marketData, setMarketData] = useState();
 
   useEffect(() => {
     if (data) {
@@ -31,21 +30,23 @@ const Graph = ({ data, marketData }) => {
     }
   }, [data]);
 
-  const regenerateData = () => {
-    const chartData = [];
-    for (let i = 0; i < 20; i++) {
-      const value = Math.floor(Math.random() * i + 3);
-      chartData.push({
-        label: i,
-        value,
+  useEffect(() => {
+    fetch(
+      "https://api.coingecko.com/api/v3/coins/" +
+        selectedMarket +
+        "/market_chart?vs_currency=usd&days=" +
+        interval +
+        "&interval=daily"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setMarketData(data);
       });
-    }
-    setChartData(chartData);
-  };
+  }, [selectedMarket, interval]);
 
   return (
     data && (
-      <div className="flex flex-col items-between w-full h-full space-y-12">
+      <div className="flex flex-col items-between w-full h-full space-y-4">
         <div className="flex flex-col space-y-4">
           <div className="w-full flex flex-row space-x-2 items-center justify-start text-lg">
             {/* <div className="w-5 h-5">{icon}</div> */}
@@ -66,8 +67,78 @@ const Graph = ({ data, marketData }) => {
             </p>
           </div>
         </div>
+        <div className="w-full flex flex-row justify-between">
+          <div className="bg-dark rounded-lg flex flex-row p-1 space-x-1">
+            <div
+              className={`${
+                market === "market" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setMarket("market")}
+            >
+              Market Cap
+            </div>
+            <div
+              className={`${
+                market === "prices" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setMarket("prices")}
+            >
+              Prices
+            </div>
+            <div
+              className={`${
+                market === "volume" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setMarket("volume")}
+            >
+              Total Volume
+            </div>
+          </div>
+          <div className="bg-dark rounded-lg flex flex-row p-1 space-x-1">
+            <div
+              className={`${
+                interval === "1" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setInterval("1")}
+            >
+              1D
+            </div>
+            <div
+              className={`${
+                interval === "7" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setInterval("7")}
+            >
+              7D
+            </div>
+            <div
+              className={`${
+                interval === "30" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setInterval("30")}
+            >
+              1M
+            </div>
+            <div
+              className={`${
+                interval === "90" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setInterval("90")}
+            >
+              3M
+            </div>
+            <div
+              className={`${
+                interval === "max" && "bg-light"
+              } hover:bg-light cursor-pointer rounded-lg p-2 text-sm`}
+              onClick={() => setInterval("max")}
+            >
+              ALL
+            </div>
+          </div>
+        </div>
         <div className="bg-dark rounded-xl w-full h-full overflow-hidden">
-          <LineGraph market={marketData} drop={drop} />
+          <LineGraph market={marketData} drop={drop} selected={market} />
         </div>
       </div>
     )

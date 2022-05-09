@@ -3,9 +3,10 @@ import Layout from "./Layouts/Layout";
 import Card from "./UI/Card";
 import { FaBitcoin, FaEthereum } from "react-icons/fa";
 import useCoins from "../hooks/useCoins";
-import useMarket from "../hooks/useMarket";
 import Graph from "./UI/Graph";
 import Info from "./UI/Info";
+import useStore from "../lib/store";
+import Navbar from "./Navbar";
 
 const Main = () => {
   const btcData = useCoins("bitcoin");
@@ -13,27 +14,23 @@ const Main = () => {
   const bnbData = useCoins("binancecoin");
   const usdcData = useCoins("usd-coin");
 
-  const btcMarket = useMarket("bitcoin", "usd", "7", "daily");
-  const ethMarket = useMarket("ethereum", "usd", "7", "daily");
-  const bnbMarket = useMarket("binancecoin", "usd", "7", "daily");
-  const usdcMarket = useMarket("usd-coin", "usd", "7", "daily");
-
   const [selected, setSelected] = useState();
   const [selectedMarket, setSelectedMarket] = useState();
+  const open = useStore((state) => state.open);
 
   const selectionHanlder = (id) => {
     if (id === "btc") {
       setSelected(btcData);
-      setSelectedMarket(btcMarket);
+      setSelectedMarket("bitcoin");
     } else if (id === "eth") {
       setSelected(ethData);
-      setSelectedMarket(ethMarket);
+      setSelectedMarket("ethereum");
     } else if (id === "bnb") {
       setSelected(bnbData);
-      setSelectedMarket(bnbMarket);
+      setSelectedMarket("binancecoin");
     } else {
       setSelected(usdcData);
-      setSelectedMarket(usdcMarket);
+      setSelectedMarket("usd-coin");
     }
   };
 
@@ -41,11 +38,13 @@ const Main = () => {
     btcData && selectionHanlder("btc");
   }, [btcData]);
 
-  console.log(btcMarket);
-
   return (
     <Layout>
-      <div className="w-full grid grid-cols-4 gap-4 h-full py-12">
+      <div
+        className={`${
+          open ? "w-5/6" : "w-full"
+        } grid grid-cols-4 gap-4 h-full py-12 transition duration-300 ease-linear p-8`}
+      >
         <div className="w-full h-full flex flex-col justifty-start space-y-4 rounded-lg">
           <Card
             icon={
@@ -138,7 +137,7 @@ const Main = () => {
           </div>
         </div>
         <div className="w-full col-span-2 h-full rounded-lg flex flex-row items-between space-x-4">
-          <Graph data={selected} marketData={selectedMarket} />
+          <Graph data={selected} selectedMarket={selectedMarket} />
         </div>
         <div className="w-full col-span-1 h-full">
           <Info data={selected} />

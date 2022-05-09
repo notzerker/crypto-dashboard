@@ -1,15 +1,24 @@
 import React from "react";
 import { BsThreeDots } from "react-icons/bs";
+import useStore from "../lib/store";
 
 const Navbar = () => {
+  const setOpen = useStore((state) => state.setOpen);
+  const open = useStore((state) => state.open);
+
   return (
-    <div className="w-full flex items-center justify-between">
+    <div
+      className={`${
+        open ? "w-1/6 " : "w-fit"
+      } bg-dark rounded-lg p-4 h-full flex justify-end`}
+    >
       <svg
         width={26}
         height={24}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="stroke-white hover:scale-105 duration-200 ease-linear transition cursor-pointer"
+        onClick={setOpen}
       >
         <path
           d="M24.75 11.364c0 .366-.262.77-.872 1.183-.602.407-1.49.783-2.608 1.102-2.234.639-5.335 1.037-8.77 1.037-3.435 0-6.536-.399-8.77-1.037-1.119-.32-2.006-.695-2.608-1.102-.61-.412-.872-.817-.872-1.183 0-.366.262-.77.872-1.183.602-.406 1.49-.782 2.608-1.102 2.234-.638 5.335-1.036 8.77-1.036 3.435 0 6.536.398 8.77 1.036 1.119.32 2.006.696 2.608 1.102.61.413.872.817.872 1.183Z"
@@ -34,7 +43,6 @@ const Navbar = () => {
           strokeWidth={1}
         />
       </svg>
-      <BsThreeDots className="cursor-pointer" />
     </div>
   );
 };
