@@ -57,6 +57,7 @@ const LineGraph = ({ market, drop, selected }) => {
   const [data, setData] = useState([]);
   const [label, setLabel] = useState([]);
   const [color, setColor] = useState("");
+  const [gradient, setGradient] = useState("#ffffff");
 
   useEffect(() => {
     if (market) {
@@ -94,9 +95,21 @@ const LineGraph = ({ market, drop, selected }) => {
     }
   }, [drop]);
 
+  useEffect(() => {
+    var ctx = document.getElementById("line").getContext("2d");
+
+    if (color) {
+      var grad = ctx.createLinearGradient(0, 0, 0, 300);
+      grad.addColorStop(0, color.toString() + "50");
+      grad.addColorStop(1, color.toString() + "10");
+      setGradient(grad);
+    }
+  }, [color]);
+
   return (
     <div className="w-full h-full items-center justify-center flex p-4">
       <Line
+        id="line"
         data={{
           labels: label,
           datasets: [
@@ -113,7 +126,7 @@ const LineGraph = ({ market, drop, selected }) => {
               borderWidth: 2,
               fill: {
                 target: "origin",
-                above: color.toString() + "20", // Area will be red above the origin
+                above: gradient, // Area will be red above the origin
               },
               pointRadius: 3,
               pointHoverRadius: 3,

@@ -33,7 +33,7 @@ const Card = ({
     <div
       className={`${
         isSelected ? "bg-light" : "bg-dark"
-      } rounded-xl flex flex-col items-start justify-between p-4 group hover:text-white/50 cursor-pointer`}
+      } rounded-md flex flex-col items-start justify-between p-4 group hover:text-white/50 cursor-pointer`}
       onClick={onClick}
     >
       <div className="w-full flex flex-row space-x-2 items-center justify-start text-lg">

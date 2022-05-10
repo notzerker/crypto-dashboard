@@ -16,7 +16,6 @@ const Main = () => {
 
   const [selected, setSelected] = useState();
   const [selectedMarket, setSelectedMarket] = useState();
-  const open = useStore((state) => state.open);
 
   const selectionHanlder = (id) => {
     if (id === "btc") {
@@ -41,11 +40,9 @@ const Main = () => {
   return (
     <Layout>
       <div
-        className={`${
-          open ? "w-5/6" : "w-full"
-        } grid grid-cols-4 gap-4 h-full py-12 transition duration-300 ease-linear p-8`}
+        className={`w-full grid grid-cols-4 gap-4 h-full py-12 transition duration-300 ease-linear p-8`}
       >
-        <div className="w-full h-full flex flex-col justifty-start space-y-4 rounded-lg">
+        <div className="w-full h-full flex flex-col justifty-start space-y-4 rounded-md">
           <Card
             icon={
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -132,11 +129,8 @@ const Main = () => {
             onClick={() => selectionHanlder("usdc")}
             selected={selected}
           />
-          <div className="bg-light transition duration-200 ease-linear rounded-xl w-full h-[4rem] cursor-pointer flex justify-center items-center hover:bg-light/50">
-            Support
-          </div>
         </div>
-        <div className="w-full col-span-2 h-full rounded-lg flex flex-row items-between space-x-4">
+        <div className="w-full col-span-2 h-full rounded-md flex flex-row items-between">
           <Graph data={selected} selectedMarket={selectedMarket} />
         </div>
         <div className="w-full col-span-1 h-full">

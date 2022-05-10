@@ -22,7 +22,7 @@ const Info = ({ data }) => {
 
   return (
     data && (
-      <motion.div className="w-full h-full flex flex-col col-span-1 space-y-8 items-start p-4 bg-dark rounded-xl">
+      <motion.div className="w-full h-full flex flex-col col-span-1 space-y-8 items-start p-4 bg-dark rounded-md">
         <motion.div>
           <p className="text-[#b9c1c3] text-sm">Total Volume</p>
           <motion.p className="text-lg" variants={attrItems}>
