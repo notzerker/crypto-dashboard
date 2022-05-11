@@ -40,11 +40,20 @@ const Navbar = () => {
           strokeWidth={1}
         />
       </svg>
-      <div className="flex flex-col items-center justify-center w-full h-full space-y-8">
+      <div className="flex flex-col items-center justify-center w-full h-full space-y-8 relative">
         <div
           className={`${
-            selected === "btc" && "bg-[#F7931A]"
-          } w-8 h-8 group items-center justify-center flex rounded-md `}
+            selected === "btc"
+              ? "translate-y-0"
+              : selected === "eth"
+              ? "translate-y-16"
+              : selected === "bnb"
+              ? "translate-y-32"
+              : selected === "usdc" && "translate-y-48"
+          } absolute bg-light rounded-lg w-8 h-8 top-[17rem] transition duration-200 ease-linear`}
+        ></div>
+        <div
+          className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}
           onClick={() => setSelected("btc")}
         >
           <svg
@@ -63,9 +72,7 @@ const Navbar = () => {
           </svg>
         </div>
         <div
-          className={`${
-            selected === "eth" && "bg-[#627EEA]"
-          } w-8 h-8 group items-center justify-center flex rounded-md `}
+          className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}
           onClick={() => setSelected("eth")}
         >
           <svg
@@ -93,9 +100,7 @@ const Navbar = () => {
           </svg>
         </div>
         <div
-          className={`${
-            selected === "bnb" && "bg-[#F7931A]"
-          } w-8 h-8 group items-center justify-center flex rounded-md `}
+          className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}
           onClick={() => setSelected("bnb")}
         >
           <svg
@@ -113,9 +118,7 @@ const Navbar = () => {
           </svg>
         </div>
         <div
-          className={`${
-            selected === "usdc" && "bg-[#3E73C4]"
-          } w-8 h-8 group items-center justify-center flex rounded-md `}
+          className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}
           onClick={() => setSelected("usdc")}
         >
           <svg
