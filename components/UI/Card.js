@@ -1,14 +1,17 @@
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Card = ({
-  icon,
+  index,
+  img,
   id,
   price,
-  priceChange,
+  volume,
   percentage,
   symbol,
   onClick,
   selected,
+  cap,
 }) => {
   const [drop, setDrop] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
@@ -29,37 +32,51 @@ const Card = ({
     }
   }, [selected]);
 
+  const priceHandler = (price) => {
+    var result = (Math.round(price * 100) / 100).toLocaleString();
+
+    if (price >= 1000000000) {
+      result = price.toString().substring(0);
+    }
+    return result;
+  };
+
   return (
     <div
-      className={`${
-        isSelected ? "bg-light" : "bg-dark"
-      } rounded-md flex flex-col items-start justify-between p-4 group hover:text-white/50 cursor-pointer`}
+      className={` grid grid-cols-8 flex-row items-between justify-center p-4 group hover:text-white/50 cursor-pointer bg-dark`}
       onClick={onClick}
     >
-      <div className="w-full flex flex-row space-x-2 items-center justify-start text-lg">
-        <div className="w-5 h-5">{icon}</div>
-        <h1 className="font-semibold">{id}</h1>
+      <div className="w-full col-span-4 flex flex-row space-x-2 items-center justify-start text-base">
+        <p className="pr-4">{index + 1}</p>
+        <div className="items-center justify-center flex rounded-full overflow-hidden">
+          <Image
+            width="24"
+            height="24"
+            src={img}
+            className="group-hover:grayscale"
+          />
+        </div>
+        <h1 className="font-medium truncate">{id}</h1>
         <h1 className="text-gray group-hover:text-gray/50 text-sm uppercase">
           ({symbol})
         </h1>
       </div>
-      <div className="w-full flex flex-col space-y-2 mt-4">
-        <p>${price && price.toLocaleString()}</p>
-        <div className="w-full flex flex-row items-start space-x-2 text-sm">
-          <p className="text-gray group-hover:text-gray/50">
-            {(Math.round(priceChange * 100) / 100).toLocaleString()}
-          </p>
-          <p
-            className={`${
-              drop
-                ? "text-red-500 group-hover:text-red-500/50"
-                : "text-green-500 group-hover:text-green-500/50"
-            } font-semibold`}
-          >
-            {Math.round(percentage * 100) / 100}%
-          </p>
-        </div>
-      </div>
+      <p className="col-span-1 flex justify-end">${price.toFixed(2)}</p>
+      <p
+        className={`${
+          drop
+            ? "text-red-500 group-hover:text-red-500/50"
+            : "text-green-500 group-hover:text-green-500/50"
+        } flex justify-end col-span-1`}
+      >
+        {(Math.round(percentage * 100) / 100).toFixed(2)}%
+      </p>
+      <p className="text-white group-hover:text-white/50 col-span-1 flex justify-end">
+        ${(Math.round(volume * 100) / 100).toLocaleString()}
+      </p>
+      <p className="text-white group-hover:text-white/50 col-span-1 flex justify-end">
+        ${(Math.round(cap * 100) / 100).toLocaleString()}
+      </p>
     </div>
   );
 };

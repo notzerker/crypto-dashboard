@@ -2,16 +2,10 @@ import React, { useEffect, useState } from "react";
 
 function useMarket(id, currency, days, interval) {
   const [data, setData] = useState();
+
   useEffect(() => {
     fetch(
-      "https://api.coingecko.com/api/v3/coins/" +
-        id +
-        "/market_chart?vs_currency=" +
-        currency +
-        "&days=" +
-        days +
-        "&interval=" +
-        interval
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
     )
       .then((res) => res.json())
       .then((data) => {

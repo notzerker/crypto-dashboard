@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-dark rounded-lg p-4 h-full flex flex-col items-center justify-center`}
+      className={`bg-dark rounded-lg p-4 h-full flex flex-col items-center justify-center sticky top-0`}
     >
       <svg
         width={26}
