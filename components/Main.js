@@ -17,8 +17,6 @@ const Main = () => {
 
   const coins = useMarket();
 
-  console.log(coins);
-
   const [selected, setSelected] = useState();
   const [selectedMarket, setSelectedMarket] = useState();
 
@@ -83,12 +81,6 @@ const Main = () => {
             ))}
           <div className="w-full rounded-b-md h-12 bg-dark"></div>
         </div>
-        {/* <div className="w-full col-span-2 h-full rounded-lg flex flex-row items-between">
-          <Graph data={selected} selectedMarket={selectedMarket} />
-        </div>
-        <div className="w-full col-span-1 h-full">
-          <Info data={selected} />
-        </div> */}
       </div>
     </Layout>
   );

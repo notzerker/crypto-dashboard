@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-dark p-4 h-fit flex flex-row items-center justify-center sticky top-0`}
+      className={`bg-dark p-4 h-fit flex flex-row items-center justify-start sticky top-0`}
     >
       <svg
         width={26}
@@ -40,7 +40,7 @@ const Navbar = () => {
           strokeWidth={1}
         />
       </svg>
-      <div className="flex flex-row items-center justify-center w-full h-full space-x-8 relative">
+      {/* <div className="flex flex-row items-center justify-center w-full h-full space-x-8 relative">
         <div
           className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}
           onClick={() => setSelected("btc")}
@@ -125,7 +125,7 @@ const Navbar = () => {
             </g>
           </svg>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

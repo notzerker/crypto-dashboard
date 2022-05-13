@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function useMarket(id, currency, days, interval) {
+function useMarket() {
   const [data, setData] = useState();
 
   useEffect(() => {
