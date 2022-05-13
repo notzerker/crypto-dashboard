@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-dark rounded-lg p-4 h-full flex flex-col items-center justify-center sticky top-0`}
+      className={`bg-dark p-4 h-fit flex flex-row items-center justify-center sticky top-0`}
     >
       <svg
         width={26}
@@ -40,18 +40,7 @@ const Navbar = () => {
           strokeWidth={1}
         />
       </svg>
-      <div className="flex flex-col items-center justify-center w-full h-full space-y-8 relative">
-        <div
-          className={`${
-            selected === "btc"
-              ? "translate-y-0"
-              : selected === "eth"
-              ? "translate-y-16"
-              : selected === "bnb"
-              ? "translate-y-32"
-              : selected === "usdc" && "translate-y-48"
-          } absolute bg-light rounded-lg w-8 h-8 top-[17rem] transition duration-200 ease-linear`}
-        ></div>
+      <div className="flex flex-row items-center justify-center w-full h-full space-x-8 relative">
         <div
           className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}
           onClick={() => setSelected("btc")}
