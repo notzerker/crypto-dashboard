@@ -13,28 +13,15 @@ const Card = ({
   volume,
   percentage,
   symbol,
-  onClick,
-  selected,
   cap,
 }) => {
   const [drop, setDrop] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     if (percentage < 0) {
       setDrop(true);
     }
   }, [percentage]);
-
-  useEffect(() => {
-    if (selected) {
-      if (selected === id) {
-        setIsSelected(true);
-      } else {
-        setIsSelected(false);
-      }
-    }
-  }, [selected]);
 
   const priceHandler = (price) => {
     var result = (Math.round(price * 100) / 100).toFixed(2);

@@ -12,29 +12,6 @@ import useMarket from "../hooks/useMarket";
 const Main = () => {
   const coins = useMarket();
 
-  const [selected, setSelected] = useState();
-  const [selectedMarket, setSelectedMarket] = useState();
-
-  const selectionHanlder = (id) => {
-    if (id === "btc") {
-      setSelected(btcData);
-      setSelectedMarket("bitcoin");
-    } else if (id === "eth") {
-      setSelected(ethData);
-      setSelectedMarket("ethereum");
-    } else if (id === "bnb") {
-      setSelected(bnbData);
-      setSelectedMarket("binancecoin");
-    } else {
-      setSelected(usdcData);
-      setSelectedMarket("usd-coin");
-    }
-  };
-
-  useEffect(() => {
-    btcData && selectionHanlder("btc");
-  }, [btcData]);
-
   return (
     <Layout>
       <div
@@ -71,8 +48,6 @@ const Main = () => {
                 cap={data.market_cap}
                 percentage={data.price_change_percentage_24h}
                 symbol={data.symbol}
-                onClick={() => selectionHanlder(data.symbol)}
-                selected={selected}
               />
             ))}
           <div className="w-full rounded-b-md h-12 bg-dark"></div>

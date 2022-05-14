@@ -54,8 +54,9 @@ const Info = ({ data }) => {
         <motion.div>
           <p className="text-[#b9c1c3] text-sm">Total Supply</p>
           <motion.p className="text-lg" variants={attrItems}>
-            {data.market_data.total_supply &&
-              priceHandler(data.market_data.total_supply)}
+            {data.market_data.total_supply
+              ? priceHandler(data.market_data.total_supply)
+              : "N/A"}
           </motion.p>
         </motion.div>
         <motion.div>
