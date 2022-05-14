@@ -10,16 +10,29 @@ import Navbar from "./Navbar";
 import useMarket from "../hooks/useMarket";
 
 const Main = () => {
-  const coins = useMarket();
+  const [coins, setCoins] = useMarket();
+
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    setData(coins);
+  }, [coins]);
+
+  const numHandler = () => {
+    setData(data.reverse());
+  };
+
+  console.log(data);
 
   return (
     <Layout>
-      <div
-        className={`w-full flex h-full transition duration-300 ease-linear overflow-y-scroll`}
-      >
+      <div className={`w-full flex h-full transition duration-300 ease-linear`}>
         <div className="w-full h-fit flex flex-col justifty-start rounded-lg space-y-[1px] py-12">
           <div className="w-full rounded-t-lg h-fit p-4 grid grid-cols-8 bg-dark text-sm font-medium text-gray">
-            <div className="flex flex-row col-span-4">
+            <div
+              className="flex flex-row col-span-4 cursor-pointer"
+              onClick={() => numHandler()}
+            >
               <p className="pr-4 cursor-pointer hover:text-light">#</p>
               <p className="cursor-pointer hover:text-light">Name</p>
             </div>
@@ -36,8 +49,8 @@ const Main = () => {
               Market Cap
             </p>
           </div>
-          {coins &&
-            coins.map((data, index) => (
+          {data &&
+            data.map((data, index) => (
               <Card
                 index={index}
                 img={data.image}

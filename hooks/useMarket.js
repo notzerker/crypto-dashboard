@@ -13,7 +13,7 @@ function useMarket() {
       });
   }, []);
 
-  return data;
+  return [data, setData];
 }
 
 export default useMarket;
