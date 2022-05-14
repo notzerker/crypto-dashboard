@@ -107,7 +107,7 @@ const LineGraph = ({ market, drop, selected }) => {
   }, [color]);
 
   return (
-    <div className="w-full h-full items-center justify-center flex p-4">
+    <div className="w-full h-fit rounded-lg items-center justify-center flex p-4 bg-dark">
       <Line
         id="line"
         data={{
@@ -149,7 +149,7 @@ const LineGraph = ({ market, drop, selected }) => {
           },
         }}
         height={400}
-        width={600}
+        width={700}
       />
     </div>
   );

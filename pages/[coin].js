@@ -13,13 +13,12 @@ const coin = ({ address }) => {
 
   return (
     <Layout>
-      <div className="w-full grid-cols-3 h-full grid px-24 py-12 gap-12">
-        <div className="w-full col-span-2 h-fit rounded-lg flex flex-row items-between">
+      <div className="w-full grid-cols-4 h-full grid gap-4 pt-8">
+        <div className="w-full col-span-4 h-full rounded-lg flex flex-row items-between">
           <Graph data={data} selectedMarket={addr} />
         </div>
-        <div className="w-full col-span-1 h-full">
-          <Info data={data} />
-        </div>
+        {/* <div className="w-full col-span-1 h-full">
+        </div> */}
       </div>
     </Layout>
   );
@@ -34,8 +33,6 @@ export async function getStaticPaths() {
   const paths = coins.map((data) => ({
     params: { coin: data.name },
   }));
-
-  // const paths = [{ params: { coin: "Bitcoin" } }, { params: { coin: "eth" } }];
 
   return {
     paths,

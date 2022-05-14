@@ -43,9 +43,9 @@ const Main = () => {
   return (
     <Layout>
       <div
-        className={`w-full flex h-screen transition duration-300 ease-linear overflow-y-scroll`}
+        className={`w-full flex h-full transition duration-300 ease-linear overflow-y-scroll`}
       >
-        <div className="w-full h-fit flex flex-col justifty-start rounded-lg space-y-[1px] px-24 py-12">
+        <div className="w-full h-fit flex flex-col justifty-start rounded-lg space-y-[1px] py-12">
           <div className="w-full rounded-t-lg h-fit p-4 grid grid-cols-8 bg-dark text-sm font-medium text-gray">
             <div className="flex flex-row col-span-4">
               <p className="pr-4 cursor-pointer hover:text-light">#</p>

@@ -54,7 +54,7 @@ const Card = ({
   return (
     <Link href={"/" + id}>
       <motion.div
-        className={`grid grid-cols-8 flex-row items-between justify-center p-4 group hover:text-white/50 cursor-pointer bg-dark hover:bg-dark/50`}
+        className={`grid grid-cols-8 flex-row items-between justify-center p-4 group hover:text-white/50 cursor-pointer bg-dark hover:bg-dark/50 `}
       >
         <div className="w-full col-span-4 flex flex-row space-x-2 items-center justify-start text-base">
           <p className="pr-4">{index + 1}</p>
