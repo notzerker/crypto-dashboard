@@ -12,8 +12,6 @@ const Graph = ({ data, selectedMarket }) => {
   const [interval, setInterval] = useState("7");
   const [marketData, setMarketData] = useState();
 
-  console.log(selectedMarket);
-
   useEffect(() => {
     if (data) {
       if (data.market_data.price_change_percentage_24h < 0) {
@@ -47,8 +45,6 @@ const Graph = ({ data, selectedMarket }) => {
         setMarketData(data);
       });
   }, [selectedMarket, interval]);
-
-  console.log(data);
 
   return (
     data && (

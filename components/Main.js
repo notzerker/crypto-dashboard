@@ -10,14 +10,7 @@ import Navbar from "./Navbar";
 import useMarket from "../hooks/useMarket";
 
 const Main = () => {
-  const btcData = useCoins("bitcoin");
-  const ethData = useCoins("ethereum");
-  const bnbData = useCoins("binancecoin");
-  const usdcData = useCoins("usd-coin");
-
   const coins = useMarket();
-
-  console.log(coins);
 
   const [selected, setSelected] = useState();
   const [selectedMarket, setSelectedMarket] = useState();
