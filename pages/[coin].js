@@ -9,16 +9,12 @@ const coin = ({ address }) => {
   const addr = address.coin.toLowerCase();
   const data = useCoins(addr);
 
-  console.log(addr);
-
   return (
     <Layout>
       <div className="w-full grid-cols-4 h-full grid gap-4 pt-8">
         <div className="w-full col-span-4 h-full rounded-lg flex flex-row items-between">
           <Graph data={data} selectedMarket={addr} />
         </div>
-        {/* <div className="w-full col-span-1 h-full">
-        </div> */}
       </div>
     </Layout>
   );
@@ -31,7 +27,7 @@ export async function getStaticPaths() {
   const coins = await res.json();
 
   const paths = coins.map((data) => ({
-    params: { coin: data.name },
+    params: { coin: data.id },
   }));
 
   return {

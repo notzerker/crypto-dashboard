@@ -8,6 +8,7 @@ const Card = ({
   index,
   img,
   id,
+  name,
   price,
   volume,
   percentage,
@@ -61,7 +62,7 @@ const Card = ({
           <div className="items-center justify-center flex rounded-full overflow-hidden">
             <Image width="24" height="24" src={img} className="" />
           </div>
-          <h1 className="font-medium truncate">{id}</h1>
+          <h1 className="font-medium truncate">{name}</h1>
           <h1 className="text-gray group-hover:text-gray/50 text-sm uppercase">
             ({symbol})
           </h1>

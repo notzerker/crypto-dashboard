@@ -12,6 +12,8 @@ const Graph = ({ data, selectedMarket }) => {
   const [interval, setInterval] = useState("7");
   const [marketData, setMarketData] = useState();
 
+  console.log(selectedMarket);
+
   useEffect(() => {
     if (data) {
       if (data.market_data.price_change_percentage_24h < 0) {
@@ -54,12 +56,12 @@ const Graph = ({ data, selectedMarket }) => {
         <div className="flex flex-col space-y-4">
           <div className="mb-4">
             <div className="w-full flex flex-row space-x-2 items-center justify-start text-lg mb-2">
-              <Image
+              {/* <Image
                 width="26"
                 height="26"
                 src={data.image.large}
                 className=""
-              />
+              /> */}
               <h1 className="font-medium text-2xl">{data.name}</h1>
               <h1 className="text-gray uppercase">({data.symbol})</h1>
             </div>

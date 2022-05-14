@@ -17,6 +17,8 @@ const Main = () => {
 
   const coins = useMarket();
 
+  console.log(coins);
+
   const [selected, setSelected] = useState();
   const [selectedMarket, setSelectedMarket] = useState();
 
@@ -69,7 +71,8 @@ const Main = () => {
               <Card
                 index={index}
                 img={data.image}
-                id={data.name}
+                id={data.id}
+                name={data.name}
                 price={data.current_price}
                 volume={data.total_volume}
                 cap={data.market_cap}
