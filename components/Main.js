@@ -55,7 +55,7 @@ const Main = () => {
         <div className="mt-6 w-full items-center justify-center flex">
           <Slider data={sliderData} />
         </div>
-        <div className="w-full h-fit flex rounded-lg flex-col justifty-start mb-12 border border-gray/30">
+        <div className="w-full h-fit flex rounded-lg flex-col justifty-start mb-12 border border-gray/30 bg-light">
           <div className="w-full rounded-t-lg h-fit p-4 grid grid-cols-8 bg-dark text-sm font-medium text-gray">
             <div
               className="flex flex-row col-span-4 cursor-pointer"

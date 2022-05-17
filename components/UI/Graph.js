@@ -50,7 +50,7 @@ const Graph = ({ data, selectedMarket }) => {
   return (
     data && (
       <div className="flex flex-col items-between w-full h-full">
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-4 ">
           <div className="mb-4">
             <div className="w-full flex flex-row space-x-2 items-center justify-start text-lg mb-2">
               <Image
