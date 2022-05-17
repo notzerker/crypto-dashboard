@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import useStore from "../lib/store";
+import Slider from "./UI/Slider";
 
 const Navbar = () => {
   const selected = useStore((state) => state.selected);
@@ -9,7 +10,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-dark p-4 h-fit flex flex-row items-center justify-start sticky w-full top-0 z-50 backdrop-blur-xl drop-shadow-lg`}
+      className={`bg-dark p-4 h-fit flex flex-row items-center justify-between sticky w-full top-0 z-50 backdrop-blur-xl drop-shadow-lg`}
     >
       <Link href="/">
         <svg
@@ -43,6 +44,7 @@ const Navbar = () => {
           />
         </svg>
       </Link>
+      <div />
       {/* <div className="flex flex-row items-center justify-center w-full h-full space-x-8 relative">
         <div
           className={` w-8 h-8 group items-center justify-center flex rounded-md z-10`}

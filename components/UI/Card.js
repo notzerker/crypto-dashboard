@@ -42,7 +42,7 @@ const Card = ({
   return (
     <Link href={"/" + id}>
       <motion.div
-        className={`grid grid-cols-8 flex-row items-between justify-center p-4 group hover:text-white/50 cursor-pointer bg-dark hover:bg-dark/50 `}
+        className={`grid grid-cols-8 flex-row items-between justify-center p-4 group  cursor-pointer bg-dark hover:bg-dark/50 `}
       >
         <div className="w-full col-span-4 flex flex-row space-x-2 items-center justify-start text-base">
           <p className="pr-4">{index + 1}</p>
@@ -50,25 +50,21 @@ const Card = ({
             <Image width="24" height="24" src={img} className="" />
           </div>
           <h1 className="font-medium truncate">{name}</h1>
-          <h1 className="text-gray group-hover:text-gray/50 text-sm uppercase">
-            ({symbol})
-          </h1>
+          <h1 className="text-gray  text-sm uppercase">({symbol})</h1>
         </div>
         <p className="col-span-1 flex justify-end">{priceHandler(price)}</p>
         <p
           className={`${
-            drop
-              ? "text-red-500 group-hover:text-red-500/50"
-              : "text-green-500 group-hover:text-green-500/50"
+            drop ? "text-red-500 " : "text-green-500 "
           } flex justify-end col-span-1 items-center space-x-1`}
         >
           <div> {drop ? <TiArrowDown /> : <TiArrowUp />}</div>
           <div>{(Math.round(percentage * 100) / 100).toFixed(2)}%</div>
         </p>
-        <p className="text-white group-hover:text-white/50 col-span-1 flex justify-end">
+        <p className="text-white col-span-1 flex justify-end">
           {priceHandler(volume)}
         </p>
-        <p className="text-white group-hover:text-white/50 col-span-1 flex justify-end">
+        <p className="text-white col-span-1 flex justify-end">
           {priceHandler(cap)}
         </p>
       </motion.div>

@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
+import Layout from "../components/Layouts/Layout";
 import Main from "../components/Main";
 import Chart from "../components/UI/LineGraph";
+import Slider from "../components/UI/Slider";
 import useCoins from "../hooks/useCoins";
 
 export default function Home() {

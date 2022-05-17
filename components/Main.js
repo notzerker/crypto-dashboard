@@ -8,26 +8,54 @@ import Info from "./UI/Info";
 import useStore from "../lib/store";
 import Navbar from "./Navbar";
 import useMarket from "../hooks/useMarket";
+import Slider from "./UI/Slider";
 
 const Main = () => {
-  const [coins, setCoins] = useMarket();
+  const data = useMarket();
 
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    setData(coins);
-  }, [coins]);
-
-  const numHandler = () => {
-    setData(data.reverse());
-  };
-
-  console.log(data);
+  const sliderData = [
+    {
+      title: "Cryptocurrencies",
+      value: "crypto",
+    },
+    {
+      title: "DeFi",
+      value: "defi",
+    },
+    {
+      title: "NFT",
+      value: "nft",
+    },
+    {
+      title: "Metaverse",
+      value: "metaverse",
+    },
+    {
+      title: "Solana",
+      value: "solana",
+    },
+    {
+      title: "Avalanche",
+      value: "avalanche",
+    },
+  ];
 
   return (
     <Layout>
-      <div className={`w-full flex h-full transition duration-300 ease-linear`}>
-        <div className="w-full h-fit flex flex-col justifty-start rounded-lg space-y-[1px] py-12">
+      <div
+        className={`w-full flex flex-col h-full transition duration-300 ease-linear`}
+      >
+        <div className="h-fit w-full bg-dark rounded-lg mt-12 p-12 space-y-1">
+          <h1 className="font-bold text-4xl">Crypto Market</h1>
+          <p>
+            The global crypto market cap is $1.30T, a 0.87% increase over the
+            last day.
+          </p>
+        </div>
+        <div className="mt-6 w-full items-center justify-center flex">
+          <Slider data={sliderData} />
+        </div>
+        <div className="w-full h-fit flex rounded-lg flex-col justifty-start mb-12 border border-gray/30">
           <div className="w-full rounded-t-lg h-fit p-4 grid grid-cols-8 bg-dark text-sm font-medium text-gray">
             <div
               className="flex flex-row col-span-4 cursor-pointer"
@@ -49,19 +77,23 @@ const Main = () => {
               Market Cap
             </p>
           </div>
+          <div className="w-full h-[1px] bg-gray/30" />
           {data &&
             data.map((data, index) => (
-              <Card
-                index={index}
-                img={data.image}
-                id={data.id}
-                name={data.name}
-                price={data.current_price}
-                volume={data.total_volume}
-                cap={data.market_cap}
-                percentage={data.price_change_percentage_24h}
-                symbol={data.symbol}
-              />
+              <>
+                <Card
+                  index={index}
+                  img={data.image}
+                  id={data.id}
+                  name={data.name}
+                  price={data.current_price}
+                  volume={data.total_volume}
+                  cap={data.market_cap}
+                  percentage={data.price_change_percentage_24h}
+                  symbol={data.symbol}
+                />
+                <div className="w-full h-[1px] bg-gray/30" />
+              </>
             ))}
           <div className="w-full rounded-b-md h-12 bg-dark"></div>
         </div>

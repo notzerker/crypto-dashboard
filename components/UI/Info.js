@@ -40,19 +40,19 @@ const Info = ({ data }) => {
     data && (
       <motion.div className="w-full h-full flex flex-col col-span-1 space-y-6 items-start p-4 bg-dark rounded-lg">
         <motion.div>
-          <p className="text-[#b9c1c3] text-sm">Total Volume</p>
+          <p className="text-gray text-sm">Total Volume</p>
           <motion.p className="text-lg" variants={attrItems}>
             {priceHandler(data.market_data.total_volume.usd)}
           </motion.p>
         </motion.div>
         <motion.div>
-          <p className="text-[#b9c1c3] text-sm">Market Cap</p>
+          <p className="text-gray text-sm">Market Cap</p>
           <motion.p className="text-lg" variants={attrItems}>
             {priceHandler(data.market_data.market_cap.usd)}
           </motion.p>
         </motion.div>
         <motion.div>
-          <p className="text-[#b9c1c3] text-sm">Total Supply</p>
+          <p className="text-gray text-sm">Total Supply</p>
           <motion.p className="text-lg" variants={attrItems}>
             {data.market_data.total_supply
               ? priceHandler(data.market_data.total_supply)
@@ -60,29 +60,29 @@ const Info = ({ data }) => {
           </motion.p>
         </motion.div>
         <motion.div>
-          <p className="text-[#b9c1c3] text-sm">24h High</p>
+          <p className="text-gray text-sm">24h High</p>
           <motion.p className="text-lg" variants={attrItems}>
             {priceHandler(data.market_data.high_24h.usd)}
           </motion.p>
         </motion.div>
         <motion.div>
-          <p className="text-[#b9c1c3] text-sm">24h Low</p>
+          <p className="text-gray text-sm">24h Low</p>
           <motion.p className="text-lg" variants={attrItems}>
             {priceHandler(data.market_data.low_24h.usd)}
           </motion.p>
         </motion.div>
-        {/* <motion.div>
-          <p className="text-[#b9c1c3] text-sm">All Time High</p>
+        <motion.div>
+          <p className="text-gray text-sm">All Time High</p>
           <motion.p className="text-lg" variants={attrItems}>
             {priceHandler(data.market_data.ath.usd)}
           </motion.p>
         </motion.div>
         <motion.div>
-          <p className="text-[#b9c1c3] text-sm">All Time Low</p>
+          <p className="text-gray text-sm">All Time Low</p>
           <motion.p className="text-lg" variants={attrItems}>
             {priceHandler(data.market_data.atl.usd)}
           </motion.p>
-        </motion.div> */}
+        </motion.div>
       </motion.div>
     )
   );

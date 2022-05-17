@@ -121,8 +121,8 @@ const LineGraph = ({ market, drop, selected }) => {
                   ? "USD Price"
                   : selected === "volume" && "Total Volume",
               data: data,
-              backgroundColor: [color],
-              borderColor: [color],
+              backgroundColor: color,
+              borderColor: color,
               borderWidth: 2,
               fill: {
                 target: "origin",

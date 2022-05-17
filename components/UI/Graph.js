@@ -3,6 +3,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 import Info from "./Info";
 import LineGraph from "./LineGraph";
+import { motion } from "framer-motion";
+import Slider from "./Slider";
 
 const Graph = ({ data, selectedMarket }) => {
   const [drop, setDrop] = useState(false);
@@ -82,72 +84,80 @@ const Graph = ({ data, selectedMarket }) => {
           <div className="col-span-3">
             <div className="w-full flex flex-row justify-between mb-4">
               <div className="bg-dark rounded-lg flex flex-row p-1 space-x-1">
-                <div
+                <motion.div
                   className={`${
-                    market === "market" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    market === "market" ? "bg-light " : "hover:bg-light/50 "
+                  } cursor-pointer rounded-md p-2 text-sm select-none`}
                   onClick={() => setMarket("market")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Market Cap
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className={`${
-                    market === "prices" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    market === "prices" ? "bg-light " : "hover:bg-light/50 "
+                  } cursor-pointer rounded-md p-2 text-sm select-none`}
                   onClick={() => setMarket("prices")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Prices
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className={`${
-                    market === "volume" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    market === "volume" ? "bg-light " : "hover:bg-light/50 "
+                  } cursor-pointer rounded-md p-2 text-sm select-none`}
                   onClick={() => setMarket("volume")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Total Volume
-                </div>
+                </motion.div>
               </div>
-              <div className="bg-dark rounded-lg flex flex-row p-1 relative">
-                <div
+
+              <div className="bg-dark rounded-lg flex flex-row p-1 space-x-1 relative">
+                <motion.div
                   className={`${
-                    interval === "1" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    interval === "1" ? "bg-light " : "hover:bg-light/50 "
+                  } cursor-pointer rounded-md p-2 text-sm select-none`}
                   onClick={() => setInterval("1")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   1D
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className={`${
-                    interval === "7" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer p-2 rounded-lg text-sm`}
+                    interval === "7" ? "bg-light " : "hover:bg-light/50 "
+                  }  cursor-pointer p-2 rounded-md text-sm select-none`}
                   onClick={() => setInterval("7")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   7D
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className={`${
-                    interval === "30" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    interval === "30" ? "bg-light " : "hover:bg-light/50 "
+                  }  cursor-pointer rounded-md p-2 text-sm select-none`}
                   onClick={() => setInterval("30")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   1M
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className={`${
-                    interval === "90" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    interval === "90" ? "bg-light " : "hover:bg-light/50 "
+                  }  cursor-pointer rounded-md p-2 text-sm select-none`}
                   onClick={() => setInterval("90")}
+                  whileTap={{ scale: 0.95 }}
                 >
                   3M
-                </div>
-                <div
+                </motion.div>
+                <motion.div
                   className={`${
-                    interval === "max" && "bg-light/50"
-                  } hover:text-white/50 cursor-pointer rounded-lg p-2 text-sm`}
+                    interval === "max" ? "bg-light " : "hover:bg-light/50 "
+                  }  cursor-pointer rounded-lg p-2 text-sm select-none`}
                   onClick={() => setInterval("max")}
                 >
                   ALL
-                </div>
+                </motion.div>
               </div>
             </div>
             <LineGraph market={marketData} drop={drop} selected={market} />
