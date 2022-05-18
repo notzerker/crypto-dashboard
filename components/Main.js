@@ -55,12 +55,9 @@ const Main = () => {
         <div className="mt-6 w-full items-center justify-center flex">
           <Slider data={sliderData} />
         </div>
-        <div className="w-full h-fit flex rounded-lg flex-col justifty-start mb-12 border border-gray/30 bg-light">
+        <div className="w-full h-fit flex rounded-lg flex-col justifty-start mb-12 bg-dark p-4 px-6">
           <div className="w-full rounded-t-lg h-fit p-4 grid grid-cols-8 bg-dark text-sm font-medium text-gray">
-            <div
-              className="flex flex-row col-span-4 cursor-pointer"
-              onClick={() => numHandler()}
-            >
+            <div className="flex flex-row col-span-4 cursor-pointer">
               <p className="pr-4 cursor-pointer hover:text-light">#</p>
               <p className="cursor-pointer hover:text-light">Name</p>
             </div>
@@ -77,7 +74,7 @@ const Main = () => {
               Market Cap
             </p>
           </div>
-          <div className="w-full h-[1px] bg-gray/30" />
+          <div className="w-full h-[1px] bg-light" />
           {data &&
             data.map((data, index) => (
               <>
@@ -92,7 +89,7 @@ const Main = () => {
                   percentage={data.price_change_percentage_24h}
                   symbol={data.symbol}
                 />
-                <div className="w-full h-[1px] bg-gray/30" />
+                <div className="w-full h-[1px] bg-light" />
               </>
             ))}
           <div className="w-full rounded-b-md h-12 bg-dark"></div>

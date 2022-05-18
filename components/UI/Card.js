@@ -43,7 +43,6 @@ const Card = ({
     <Link href={"/" + id}>
       <motion.div
         className={`grid grid-cols-8 flex-row items-between justify-center p-4 group  cursor-pointer bg-dark hover:bg-light`}
-        whileTap={{ scale: 0.99 }}
       >
         <div className="w-full col-span-4 flex flex-row space-x-2 items-center justify-start text-base">
           <p className="pr-4">{index + 1}</p>
@@ -56,7 +55,7 @@ const Card = ({
         <p className="col-span-1 flex justify-end">{priceHandler(price)}</p>
         <p
           className={`${
-            drop ? "text-red-500 " : "text-green-500 "
+            drop ? "text-red-500 " : "text-green-500"
           } flex justify-end col-span-1 items-center space-x-1`}
         >
           <div> {drop ? <TiArrowDown /> : <TiArrowUp />}</div>
