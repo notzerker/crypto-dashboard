@@ -11,10 +11,12 @@ const coin = ({ address }) => {
 
   return (
     <Layout>
-      <div className="w-full grid-cols-4 h-full grid gap-4 pt-8">
-        <div className="w-full col-span-4 h-full rounded-lg flex flex-row items-between">
+      <div className="w-full h-full pt-8">
+        {data ? (
           <Graph data={data} selectedMarket={addr} />
-        </div>
+        ) : (
+          <div className="w-full h-full rounded-lg bg-gradient-to-r from-dark to-dark via-light overflow-hidden animate-gradient-x" />
+        )}
       </div>
     </Layout>
   );

@@ -54,10 +54,10 @@ Chart.register(
 );
 
 const LineGraph = ({ market, drop, selected }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [label, setLabel] = useState([]);
   const [color, setColor] = useState("");
-  const [gradient, setGradient] = useState("#ffffff");
+  const [gradient, setGradient] = useState("");
 
   useEffect(() => {
     if (market) {
@@ -96,19 +96,21 @@ const LineGraph = ({ market, drop, selected }) => {
   }, [drop]);
 
   useEffect(() => {
-    var ctx = document.getElementById("line").getContext("2d");
+    if (data) {
+      var ctx = document.getElementById("line").getContext("2d");
 
-    if (color) {
-      var grad = ctx.createLinearGradient(0, 0, 0, 300);
-      grad.addColorStop(0, color.toString() + "50");
-      grad.addColorStop(1, color.toString() + "10");
-      setGradient(grad);
+      if (color) {
+        var grad = ctx.createLinearGradient(0, 0, 0, 300);
+        grad.addColorStop(0, color.toString() + "50");
+        grad.addColorStop(1, color.toString() + "10");
+        setGradient(grad);
+      }
     }
-  }, [color]);
+  }, [data, color]);
 
   return data ? (
     <div className="w-full h-full rounded-lg bg-dark flex items-center justify-center">
-      <div className="w-full h-fit items-center justify-center flex p-4">
+      <div className="w-full h-full items-center justify-center flex p-4">
         <Line
           id="line"
           data={{
@@ -149,8 +151,8 @@ const LineGraph = ({ market, drop, selected }) => {
               },
             },
           }}
-          height={400}
-          width={700}
+          height={300}
+          width={525}
         />
       </div>
     </div>

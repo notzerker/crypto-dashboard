@@ -80,9 +80,9 @@ const Graph = ({ data, selectedMarket }) => {
           </div>
         </div>
 
-        <div className="rounded-lg w-full h-full overflow-hidden grid grid-cols-4 gap-4">
-          <div className="col-span-3">
-            <div className="w-full flex flex-row justify-between mb-4">
+        <div className="w-full h-full  grid grid-cols-4 gap-4">
+          <div className="col-span-3 flex flex-col h-full w-full">
+            <div className="w-full h-fit flex flex-row justify-between mb-4">
               <div className="bg-dark rounded-lg flex flex-row p-1 space-x-1">
                 <motion.div
                   className={`${
