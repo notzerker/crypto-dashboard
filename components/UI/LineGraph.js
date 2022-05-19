@@ -106,52 +106,56 @@ const LineGraph = ({ market, drop, selected }) => {
     }
   }, [color]);
 
-  return (
-    <div className="w-full h-fit rounded-lg items-center justify-center flex p-4 bg-dark">
-      <Line
-        id="line"
-        data={{
-          labels: label,
-          datasets: [
-            {
-              label:
-                selected === "market"
-                  ? "Market Cap"
-                  : selected === "prices"
-                  ? "USD Price"
-                  : selected === "volume" && "Total Volume",
-              data: data,
-              backgroundColor: color,
-              borderColor: color,
-              borderWidth: 2,
-              fill: {
-                target: "origin",
-                above: gradient, // Area will be red above the origin
+  return data ? (
+    <div className="w-full h-full rounded-lg bg-dark flex items-center justify-center">
+      <div className="w-full h-fit items-center justify-center flex p-4">
+        <Line
+          id="line"
+          data={{
+            labels: label,
+            datasets: [
+              {
+                label:
+                  selected === "market"
+                    ? "Market Cap"
+                    : selected === "prices"
+                    ? "USD Price"
+                    : selected === "volume" && "Total Volume",
+                data: data,
+                backgroundColor: color,
+                borderColor: color,
+                borderWidth: 2,
+                fill: {
+                  target: "origin",
+                  above: gradient, // Area will be red above the origin
+                },
+                pointRadius: 3,
+                pointHoverRadius: 3,
               },
-              pointRadius: 3,
-              pointHoverRadius: 3,
-            },
-          ],
-        }}
-        options={{
-          plugins: {
-            legend: {
-              display: false,
-            },
-          },
-          scales: {
-            y: {
-              beginAtZero: false,
-              ticks: {
-                display: true,
+            ],
+          }}
+          options={{
+            plugins: {
+              legend: {
+                display: false,
               },
             },
-          },
-        }}
-        height={400}
-        width={700}
-      />
+            scales: {
+              y: {
+                beginAtZero: false,
+                ticks: {
+                  display: true,
+                },
+              },
+            },
+          }}
+          height={400}
+          width={700}
+        />
+      </div>
     </div>
+  ) : (
+    <div className="w-full h-full rounded-lg bg-gradient-to-r from-dark to-dark via-light overflow-hidden animate-gradient-x" />
   );
 };
 
