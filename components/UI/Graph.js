@@ -64,9 +64,7 @@ const Graph = ({ data, selectedMarket }) => {
             </div>
             <div className="w-full flex flex-row items-center space-x-2">
               <p className="text-white text-3xl">
-                $
-                {data.market_data &&
-                  data.market_data.current_price.usd.toLocaleString()}
+                ${data.market_data?.current_price.usd.toLocaleString()}
               </p>
               <p
                 className={`${

@@ -64,11 +64,10 @@ const LineGraph = ({ market, drop, selected }) => {
       const priceArray = [];
       const labelArray = [];
       if (selected === "market") {
-        market.market_caps &&
-          market.market_caps.forEach((price) => {
-            priceArray.push(price[1]);
-            labelArray.push("");
-          });
+        market.market_caps?.forEach((price) => {
+          priceArray.push(price[1]);
+          labelArray.push("");
+        });
       } else if (selected === "prices") {
         market.prices &&
           market.prices.forEach((price) => {

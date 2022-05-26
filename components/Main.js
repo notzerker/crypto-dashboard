@@ -75,23 +75,20 @@ const Main = () => {
             </p>
           </div>
           <div className="w-full h-[1px] bg-light" />
-          {data &&
-            data.map((data, index) => (
-              <>
-                <Card
-                  index={index}
-                  img={data.image}
-                  id={data.id}
-                  name={data.name}
-                  price={data.current_price}
-                  volume={data.total_volume}
-                  cap={data.market_cap}
-                  percentage={data.price_change_percentage_24h}
-                  symbol={data.symbol}
-                />
-                <div className="w-full h-[1px] bg-light" />
-              </>
-            ))}
+          {data?.map((data, index) => (
+            <Card
+              key={data.id}
+              index={index}
+              img={data.image}
+              id={data.id}
+              name={data.name}
+              price={data.current_price}
+              volume={data.total_volume}
+              cap={data.market_cap}
+              percentage={data.price_change_percentage_24h}
+              symbol={data.symbol}
+            />
+          ))}
           <div className="w-full rounded-b-md h-12 bg-dark"></div>
         </div>
       </div>
